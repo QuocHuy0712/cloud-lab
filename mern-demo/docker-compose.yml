@@ -1,0 +1,23 @@
+services:
+  backend:
+    build: ./server
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGODB_URI=mongodb+srv://huyhuynh0712:huy123@huyhuynh0712.puaczlq.mongodb.net/cloud_lab?retryWrites=true&w=majority
+    networks:
+      - mern-network
+
+  frontend:
+    build: ./client
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    networks:
+      - mern-network
+
+networks:
+  mern-network:
+    driver: bridge
